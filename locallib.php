@@ -720,10 +720,10 @@ function getallcategories() {
                    p3.name as parent3_name,
                    p4.parent as parent4_id,
                    p4.name as parent4_name
-                   FROM mdl_course_categories p1
-                   LEFT JOIN mdl_course_categories p2 on p2.id = p1.parent
-                   LEFT JOIN mdl_course_categories p3 on p3.id = p2.parent
-                   LEFT JOIN mdl_course_categories p4 on p4.id = p3.parent
+                   FROM {course_categories} p1
+                   LEFT JOIN {course_categories} p2 on p2.id = p1.parent
+                   LEFT JOIN {course_categories} p3 on p3.id = p2.parent
+                   LEFT JOIN {course_categories} p4 on p4.id = p3.parent
                    WHERE p1.visible = '1'
                    ORDER BY parent4_name, parent3_name, parent2_name";
     $results = $DB->get_records_sql ( $sql );
@@ -833,10 +833,10 @@ function getallsubcategories($cat) {
                    p3.name as parent3_name,
                    p4.parent as parent4_id,
                    p4.name as parent4_name
-                   FROM mdl_course_categories p1
-                   LEFT JOIN mdl_course_categories p2 on p2.id = p1.parent
-                   LEFT JOIN mdl_course_categories p3 on p3.id = p2.parent
-                   LEFT JOIN mdl_course_categories p4 on p4.id = p3.parent
+                   FROM {course_categories} p1
+                   LEFT JOIN {course_categories} p2 on p2.id = p1.parent
+                   LEFT JOIN {course_categories} p3 on p3.id = p2.parent
+                   LEFT JOIN {course_categories} p4 on p4.id = p3.parent
                    WHERE p1.visible = '1' AND  ( p1.id = ".$cat." OR p2.id = ".$cat." OR p4.id = ".$cat." OR p3.id = ".$cat." ) ";
     $results = $DB->get_records_sql ( $sql );
     $subcategories = array_shift( $results );
